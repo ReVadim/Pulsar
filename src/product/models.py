@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django.core.validators import FileExtensionValidator
 from django.core.validators import MinValueValidator
 
-from ..base.services import (
+from src.base.services import (
     WEBPField,
     get_path_upload_image,
     validate_size_image,
@@ -31,3 +31,11 @@ class Products(models.Model):
         verbose_name=_("image"),
         validators=[FileExtensionValidator(allowed_extensions=['jpg', 'png', 'webp']), validate_size_image]
     )
+
+    def __str__(self):
+        return f'{self.article} - {self.title}'
+
+    class Meta:
+        verbose_name = 'Product'
+        verbose_name_plural = 'Products'
+        ordering = ('status',)
